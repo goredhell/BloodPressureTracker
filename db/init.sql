@@ -21,3 +21,7 @@ CREATE TABLE blood_pressure_records (
     record_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+
+-- Varsayılan admin kullanıcısını ekleme
+INSERT INTO users (username, password, role) VALUES ('admin', '$2y$10$e0MYz5Z5Z5Z5Z5Z5Z5Z5Z5u5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5', 'admin');
