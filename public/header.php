@@ -20,6 +20,9 @@ session_start();
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
           <li class="nav-item"><a class="nav-link" href="admin.php">Kullanıcı Yönetimi</a></li>
         <?php endif; ?>
+		<?php if (isset($_SESSION['user_id'])): ?>
+	<li class="nav-item"><a class="nav-link" href="change_password.php">Şifremi Değiştir</a></li>
+		<?php endif; ?>
         <li class="nav-item"><a class="nav-link" href="logout.php">Çıkış Yap</a></li>
       </ul>
     </div>
