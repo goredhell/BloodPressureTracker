@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-// Eğer kullanıcı zaten giriş yapmışsa, dashboard sayfasına yönlendir
+// Giriş yapılmışsa doğrudan dashboard'a git
 if (isset($_SESSION['user_id'])) {
     header("Location: dashboard.php");
-    exit();
+    exit;
 }
 ?>
 
@@ -13,20 +13,23 @@ if (isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tansiyon Kaydı Sistemi</title>
-    <link rel="stylesheet" href="styles.css"> <!-- İsteğe bağlı stil dosyası -->
+    <title>Tansiyon Takip Sistemi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="container">
-        <h1>Tansiyon Kaydı Sistemi</h1>
-        <form action="login.php" method="POST">
-            <label for="username">Kullanıcı Adı:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Şifre:</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit">Giriş Yap</button>
-        </form>
-        
+<body class="bg-light d-flex align-items-center" style="min-height: 100vh;">
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h1 class="display-5 text-primary mb-3">Tansiyon Takip Sistemi</h1>
+            <p class="lead mb-4">
+                Günlük tansiyon ölçümlerinizi kaydedin ve geçmiş verilerinizi takip edin.
+            </p>
+            <a href="login.php" class="btn btn-primary btn-lg">Giriş Yap</a>
+        </div>
     </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
