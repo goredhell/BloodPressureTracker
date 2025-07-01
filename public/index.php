@@ -26,7 +26,7 @@ if (isset($_SESSION['user_id'])) {
             <input type="password" id="password" name="password" required>
             <button type="submit">Giriş Yap</button>
         </form>
-        <p>Henüz bir hesabınız yok mu? <a href="register.php">Kayıt Ol</a></p>
+        
     </div>
 </body>
 </html>

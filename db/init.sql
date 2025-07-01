@@ -24,4 +24,4 @@ CREATE TABLE blood_pressure_records (
 
 
 -- Varsayılan admin kullanıcısını ekleme
-INSERT INTO users (username, password, role) VALUES ('admin', '$2y$10$e0MYz5Z5Z5Z5Z5Z5Z5Z5Z5u5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5', 'admin');
+INSERT INTO users (username, password, role) VALUES ('admin', '$2y$10$1SRUSqEJVmP2.6i.oZ185uV01Ufnzs7brnHB/GuP2nPXs8rIWPpMi', 'admin');
