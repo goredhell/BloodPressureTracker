@@ -36,6 +36,23 @@ foreach ($data as $row) {
     <?php endif; ?>
 </div>
 
+<!-- Histogramlar -->
+<?php if (!empty($labels)): ?>
+<hr class="my-5">
+<h4 class="text-center text-secondary">Dağılım Grafikleri (Histogram)</h4>
+<div class="row mt-4">
+    <div class="col-md-4">
+        <canvas id="histSistolik" height="120"></canvas>
+    </div>
+    <div class="col-md-4">
+        <canvas id="histDiastolik" height="120"></canvas>
+    </div>
+    <div class="col-md-4">
+        <canvas id="histPulse" height="120"></canvas>
+    </div>
+</div>
+<?php endif; ?>
+
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
@@ -97,6 +114,89 @@ const chart = new Chart(ctx, {
                     maxRotation: 90,
                     minRotation: 45
                 }
+            }
+        }
+    }
+});
+
+// Histogram hesaplaması için yardımcı fonksiyon
+function calculateHistogram(data, step = 10) {
+    const buckets = {};
+    data.forEach(value => {
+        const bucket = Math.floor(value / step) * step;
+        buckets[bucket] = (buckets[bucket] || 0) + 1;
+    });
+
+    const labels = Object.keys(buckets).sort((a, b) => a - b);
+    const counts = labels.map(label => buckets[label]);
+
+    return { labels, counts };
+}
+
+// Histogram: Sistolik
+const histS = calculateHistogram(<?= json_encode($systolicData) ?>, 10);
+new Chart(document.getElementById('histSistolik').getContext('2d'), {
+    type: 'bar',
+    data: {
+        labels: histS.labels.map(l => l + "-" + (+l + 9)),
+        datasets: [{
+            label: 'Sistolik Dağılımı',
+            data: histS.counts,
+            backgroundColor: 'rgba(0, 123, 255, 0.6)'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Büyük Tansiyon (Sistolik)'
+            }
+        }
+    }
+});
+
+// Histogram: Diastolik
+const histD = calculateHistogram(<?= json_encode($diastolicData) ?>, 10);
+new Chart(document.getElementById('histDiastolik').getContext('2d'), {
+    type: 'bar',
+    data: {
+        labels: histD.labels.map(l => l + "-" + (+l + 9)),
+        datasets: [{
+            label: 'Diastolik Dağılımı',
+            data: histD.counts,
+            backgroundColor: 'rgba(40, 167, 69, 0.6)'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Küçük Tansiyon (Diastolik)'
+            }
+        }
+    }
+});
+
+// Histogram: Nabız
+const histP = calculateHistogram(<?= json_encode($pulseData) ?>, 10);
+new Chart(document.getElementById('histPulse').getContext('2d'), {
+    type: 'bar',
+    data: {
+        labels: histP.labels.map(l => l + "-" + (+l + 9)),
+        datasets: [{
+            label: 'Nabız Dağılımı',
+            data: histP.counts,
+            backgroundColor: 'rgba(255, 193, 7, 0.6)'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Nabız'
             }
         }
     }
