@@ -1,14 +1,19 @@
 <?php
-$servername = "localhost"; // Veritabanı sunucusu
-$username = "root"; // Veritabanı kullanıcı adı
-$password = ""; // Veritabanı şifresi
-$dbname = "tansiyon_kayit"; // Veritabanı adı
+$host = "localhost";
+$dbname = "DBNAME";
+$username = "USERNAME";
+$password = "PASSWORD";
+$charset = "utf8mb4";
 
-// Veritabanı bağlantısı
-$conn = new mysqli($servername, $username, $password, $dbname);
+$dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+];
 
-// Bağlantı kontrolü
-if ($conn->connect_error) {
-    die("Bağlantı başarısız: " . $conn->connect_error);
+try {
+    $pdo = new PDO($dsn, $username, $password, $options);
+} catch (PDOException $e) {
+    die("Veritabanı bağlantı hatası: " . $e->getMessage());
 }
 ?>
