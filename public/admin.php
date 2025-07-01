@@ -7,6 +7,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
+include 'header.php'; // Menü dosyasını dahil et
+
 // Yeni kullanıcı ekleme
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];

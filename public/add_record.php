@@ -7,6 +7,8 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+include 'header.php'; // Menü dosyasını dahil et
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $systolic = $_POST['systolic'];
     $diastolic = $_POST['diastolic'];

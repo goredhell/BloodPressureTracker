@@ -6,6 +6,8 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+include 'header.php'; // Menü dosyasını dahil et
+
 echo "<h1>Hoş Geldiniz</h1>";
 
 // Kullanıcı rolüne göre menü seçenekleri

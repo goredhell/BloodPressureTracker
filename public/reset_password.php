@@ -7,6 +7,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
+include 'header.php'; // Menü dosyasını dahil et
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
     $new_password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);

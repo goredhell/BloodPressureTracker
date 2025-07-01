@@ -7,6 +7,8 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+include 'header.php'; // Menü dosyasını dahil et
+
 $user_id = $_SESSION['user_id'];
 $stmt = $conn->prepare("SELECT * FROM blood_pressure_records WHERE user_id = ?");
 $stmt->bind_param("i", $user_id);

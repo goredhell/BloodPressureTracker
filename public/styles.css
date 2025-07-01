@@ -6,12 +6,44 @@ body {
 }
 
 .container {
-    max-width: 400px;
+    max-width: 800px;
     margin: auto;
     background: white;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    background-color: #007bff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex; /* Flexbox kullanarak yan yana dizme */
+    justify-content: space-around; /* Elemanlar arasında eşit boşluk bırakma */
+}
+
+nav ul li {
+    margin: 0 10px; /* Elemanlar arasında yatay boşluk */
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 15px; /* Buton benzeri görünüm için iç boşluk */
+    border-radius: 5px; /* Kenarları yuvarlama */
+    transition: background-color 0.3s; /* Geçiş efekti */
+}
+
+nav ul li a:hover {
+    background-color: #0056b3; /* Hover durumunda arka plan rengi değişimi */
+    text-decoration: none; /* Alt çizgiyi kaldır */
 }
 
 h1 {
